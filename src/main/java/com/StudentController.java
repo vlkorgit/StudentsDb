@@ -32,6 +32,7 @@ public class StudentController {
 		model.addAttribute("PageNum",page);
 		int pages = studentRepo.getStudentsAmount()/15;
 		if (pages==0) pages=1;
+		if (page > pages || page<=0) return "redirect:/error";
 		model.addAttribute("Pages",pages);
 		return "students";
 	}
