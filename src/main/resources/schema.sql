@@ -1,0 +1,2 @@
+create table if not exists Students (Id int IDENTITY not null,FirstName varchar(50) not null,LastName varchar(50) not
+null,MiddleName varchar(50),DateOfBirth date not null,GroupNumber int not null,CONSTRAINT PK_Students PRIMARY KEY (Id));

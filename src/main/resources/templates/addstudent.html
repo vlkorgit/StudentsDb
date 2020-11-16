@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add student</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<div>
+    <form method="POST" th:object="${student}">
+        <table>
+            <tr>
+                <td>
+                    First name
+                    <br/>
+                    <input type="text" th:field="*{FirstName}">
+                    <span class="red"
+                          th:if="${FirstNameErrorState}"
+                          th:text="${FirstNameErrorMessage}">
+            </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last name<br/>
+                    <input type="text" th:field="*{LastName}">
+                    <span class="red"
+                          th:if="${LastNameErrorState}"
+                          th:text="${LastNameErrorMessage}">
+            </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Middle name<br/>
+                    <input type="text" th:field="*{MiddleName}">
+                    <span class="red"
+                          th:if="${MiddleNameErrorState}"
+                          th:text="${MiddleNameErrorMessage}">
+            </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Date of birth<br/>
+                    <input type="date" th:field="*{Dob}">
+                    <span class="red"
+                          th:if="${DobErrorState}"
+                          th:text="${DobErrorMessage}">
+            </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Group<br/>
+                    <input type="text" th:field="*{Group}">
+                    <span class="red"
+                          th:if="${GroupErrorState}"
+                          th:text="${GroupErrorMessage}">
+            </span>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" value="Add student">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <hr/>
+    <button onclick="location.href = '/'">Back to all students</button>
+</div>
+</body>
+</html>

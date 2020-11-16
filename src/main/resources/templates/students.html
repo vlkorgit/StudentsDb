@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List of students</title>
+    <!--    -->
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Middle name</th>
+            <th>Group</th>
+            <th>Date of birth</th>
+            <th>Remove</th>
+        </tr>
+        <tr th:each="student: ${students}" }>
+            <td th:text="${student.Id}"></td>
+            <td th:text="${student.FirstName}"></td>
+            <td th:text="${student.LastName}"></td>
+            <td th:text="${student.MiddleName}"></td>
+            <td th:text="${student.Group}"></td>
+            <td th:text="${student.Dob}"></td>
+            <td>
+                <button value="Remove" onclick="removeStudent(this)">Remove</button>
+            </td>
+        </tr>
+    </table>
+
+    <hr/>
+    <table>
+        <tr>
+            <td>
+                <button value="Prev page" onclick="prevPage()" id="prevButton">Prev page</button>
+            </td>
+            <td><p class="horiz">Page</p>
+                <p th:text="${PageNum}" id="PageNum" class="horiz"></p>
+                <p class="horiz"> of </p>
+                <p th:text="${Pages}" id="TotalPages" class="horiz"></p></td>
+            <td>
+                <button value="Next page" onclick="nextPage()" id="nextButton">Next page</button>
+            </td>
+            <td>
+                <button value="Add student" onclick="location.href = '/students/add'">Add student</button>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<script>
+    var currentpage = Number(document.getElementById("PageNum").innerText)
+    var pages = Number(document.getElementById("TotalPages").innerText)
+    if (currentpage==1) document.getElementById("prevButton").disabled = true
+    if (currentpage ==pages) document.getElementById("nextButton").disabled = true
+    function removeStudent(button){
+        let num = button.parentElement.parentElement.firstElementChild.innerText
+        location.href = "/students/remove?id="+num;
+    }
+    function nextPage(){
+        let nextpage = currentpage+1
+        location.href = "/students?page="+nextpage
+    }
+    function prevPage(){
+        let prevpage = currentpage - 1
+        location.href = "/students?page="+prevpage
+    }
+
+
+</script>
+</body>
+</html>
